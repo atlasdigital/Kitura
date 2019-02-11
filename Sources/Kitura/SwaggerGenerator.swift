@@ -462,11 +462,8 @@ struct SwaggerDocument: Encodable {
     // - Parameter description: A string description of the response.
     // - Parameter responseType: Either an array or a single response.
     // - Returns: SwaggerResponse.
-    //func buildResponse(description: String, responseType: SwaggerResponseType, id: String?) -> SwaggerResponse {
     func buildResponse(description: String, responseType: SwaggerResponseType, headers: SwaggerHeaders?) -> SwaggerResponse {
         let reference = SingleReference(ref: "#/definitions/\(responseType.type)")
-    //    var headers = SwaggerHeaders()dd
-    //    addHeader(headers: &headers, name: "Location", description: "Identity of created resource", type: "integer")
         if responseType.array {
             if responseType.tuple {
                 let additionalRef = AdditionalReference(additionalProperties: reference)
@@ -709,9 +706,6 @@ struct SwaggerDocument: Encodable {
                                 idtype = "\(id)"
                             }
                             if method == "get" {
-                                //var headers = SwaggerHeaders()
-                                //addHeader(headers: &headers, name: "Location", description: "Identity of resource", type: idtype)
-                                //responses["200"] = buildResponse(description: "successful response", responseType: responseTypes[0], headers: headers)
                                 responses["200"] = buildResponse(description: "successful response", responseType: responseTypes[0], headers: nil)
                             } else {
                                 var headers = SwaggerHeaders()
